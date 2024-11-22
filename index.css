@@ -4,27 +4,28 @@
   box-sizing: border-box;
 }
 
+
 body {
   background-color: rgb(23, 65, 100);
   background-size: cover;
   background-position: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-  color: white;
+  color: white; 
 }
 
 .header {
-  position: fixed;
+  position: fixed; 
   top: 0;
-  width: 100%; /* Ensure header spans the full width */
+  width: 75%; 
   color: #fff;
   padding: 20px;
   z-index: 100;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);  
 }
 
 .nav {
   display: flex;
-  justify-content: center; /* Center align the navigation on small screens */
+  justify-content: flex-end; 
   align-items: center;
 }
 
@@ -45,7 +46,7 @@ body {
 }
 
 .nav_link a:hover {
-  color: #7cdef4;
+  color: #7cdef4; 
   transition: color 1s ease;
 }
 
@@ -54,8 +55,8 @@ body {
   margin-top: 0px; 
   margin-left: 50px;
   width: 250px; 
-  float: left;
-  margin-right: 20px;
+  float: left; 
+  margin-right: 20px; 
 }
 
 .zoom-container {
@@ -74,7 +75,25 @@ body {
 
 .content {
   animation: fadeIn 3s; 
+ }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
+
+.content2 {
+  animation: fadeIn 3s; 
+ }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.content3 {
+  animation: fadeIn 3s; 
+ }
 
 @keyframes fadeIn {
   0% { opacity: 0; }
@@ -87,7 +106,7 @@ body {
 }
 
 .profile_links a:hover {
-  color: #7cdef4;
+  color: #7cdef4; 
   transition: color 1s ease;
 }
 
@@ -99,13 +118,13 @@ body {
 }
 
 ul {
-  list-style-type: none;
+  list-style-type: none; 
 }
 
 .content-section {
   margin-top: 80px; 
   margin-left: 320px;
-  display: flex;
+  display: flex; 
 }
 
 .content {
@@ -142,6 +161,7 @@ ul {
   height: 410px; 
 }
 
+
 input[type=text], select, textarea {
   width: 100%; 
   padding: 12px; 
@@ -152,8 +172,9 @@ input[type=text], select, textarea {
   box-sizing: border-box; 
   margin-top: 6px; 
   margin-bottom: 16px; 
-  resize: vertical;
+  resize: vertical 
 }
+
 
 input[type=submit] {
   background-color: #1c4cfa;
@@ -176,8 +197,8 @@ input[type=submit]:hover {
 
 h1 {
   position: relative;
-  font-family: monospace;
-  font-size: xx-large;
+  font-family:monospace;
+  font-size:xx-large;
   display: inline-block; 
 }
 
@@ -194,15 +215,22 @@ h1::after {
 .text p {
   text-align: left; 
   max-width: 800px; 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: large;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size:large;
 }
 
-h4, h3 {
+h4 {
   font-size: medium;
   font-weight: lighter;
   color: rgb(190, 202, 215);
 }
+
+h3 {
+  font-size: medium;
+  font-weight: lighter;
+  color: rgb(190, 202, 215);
+}
+
 
 .experience-item {
   display: flex;
@@ -226,6 +254,17 @@ h4, h3 {
 
 .experience-text p {
   margin-top: 10px;      
+}
+
+@media (max-width: 768px) {
+  .experience-item {
+      flex-direction: column; 
+      align-items: flex-start; 
+  }
+
+  .experience-item img {
+      margin-bottom: 10px; 
+  }
 }
 
 .education-item {
@@ -252,19 +291,31 @@ h4, h3 {
   margin-top: 10px;     
 }
 
+@media (max-width: 768px) {
+  .education-item {
+      flex-direction: column; 
+      align-items: flex-start; 
+  }
+
+  .education-item img {
+      margin-bottom: 10px; 
+  }
+}
+
 h6 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #57dcf1;
   font-size: large;
   font-weight: 100;
 }
 
 .h7 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #ffffff;
   font-size: large;
   font-weight: 100;
 }
+
 
 .project {
   color: #007bff;  
@@ -272,9 +323,10 @@ h6 {
   transition: color 0.3s ease, text-decoration 0.3s ease;  
 }
 
+
 .project:hover {
-  color: #0056b3;  
-  text-decoration: underline; 
+  color: #7cdef4;  
+  text-decoration: none; 
 }
 
 .text {
@@ -284,96 +336,4 @@ h6 {
 h1, h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-}
-
-/* Media Queries for Mobile Responsiveness */
-@media (max-width: 768px) {
-  /* Adjust header */
-  .header {
-    width: 100%;
-    padding: 15px;
-  }
-
-  /* Adjust nav links for small screens */
-  .nav_links {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .nav_link {
-    margin-left: 0;
-    margin-bottom: 15px;
-    font-size: medium;
-  }
-
-  .side-pane {
-    position: relative;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 100px;
-    text-align: center; /* Center align text for small screens */
-  }
-
-  /* Adjust the content section */
-  .content-section {
-    margin-top: 120px;
-    margin-left: 0;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .content img {
-    width: 90%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .text {
-    margin-left: 0;
-    text-align: center;
-    font-size: 1rem;
-  }
-
-  .line {
-    width: 80%;
-    margin: 20px auto;
-  }
-
-  /* Adjust form inputs */
-  input[type=text], select, textarea {
-    font-size: 1rem;
-    padding: 10px;
-  }
-
-  input[type=submit] {
-    font-size: 1rem;
-    padding: 10px;
-  }
-
-  .experience-item, .education-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .experience-item img, .education-item img {
-    width: 80px;
-    margin-bottom: 10px;
-  }
-
-  .experience-text, .education-text {
-    max-width: 100%;
-  }
-
-  .acheivement-image {
-    width: 100%;
-    height: auto;
-  }
-
-  /* Reduce font sizes for smaller screens */
-  h1, h3 {
-    font-size: 1.2rem;
-  }
 }
