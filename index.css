@@ -68,9 +68,9 @@ body {
 }
 
 .zoom-container img {
-  width: 105%; 
-  height: 116%; 
-  object-position: 90%;
+  width: 102%;
+  height: auto;
+  object-position: 120%;
 }
 
 .content {
