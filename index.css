@@ -337,3 +337,71 @@ h1, h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
+
+@media (max-width: 600px)  {
+
+  .header {
+    position: relative;
+    width: 100%; 
+    background-color: rgb(23, 65, 100);
+    left: 1%;
+    backdrop-filter: none;
+    z-index: 1000;
+  }
+
+  main {
+    margin-top: 60px;
+    padding-top: 30%;
+  }
+  
+  .nav_links {  
+    list-style-type: none;
+    display: flex;
+  }
+  
+  .nav_link {
+    font-size: small;
+  }
+  
+  .nav_link a {
+    font-size: x-small;
+
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+  h4 {
+    font-size: medium;
+    font-weight: lighter;
+    color: rgb(190, 202, 215);
+  }
+
+  .side-pane {
+    position: relative;
+    top: 7%;
+    right: 10%;
+  }
+  
+  .zoom-container {
+    width: 60px; 
+    height: 60px;
+    background-color: rgb(23, 65, 100);
+  }
+
+  .content-section {
+    margin-left: 6px;
+    display: flex;
+    z-index: 1000;
+  }
+
+  h1 {
+    font-size: medium;
+  }
+
+  .text p { 
+    font-size: small;
+  }
+  
+}
