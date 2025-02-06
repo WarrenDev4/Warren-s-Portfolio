@@ -73,32 +73,21 @@ body {
   object-position: 120%;
 }
 
-.content {
-  animation: fadeIn 3s; 
- }
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+.content, .content2, .content3 {
+  animation: popIn 1.5s ease-out both;
 }
 
-.content2 {
-  animation: fadeIn 3s; 
- }
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.content3 {
-  animation: fadeIn 3s; 
- }
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
 
 .profile_links {
   text-decoration: none;
