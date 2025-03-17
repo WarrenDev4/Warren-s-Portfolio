@@ -843,6 +843,27 @@ label {
   animation-delay: 1.2s;
 }
 
+.contact-social {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+}
+
+.social-links {
+  display: flex;
+  gap: 15px; 
+}
+
+.social-links a {
+  color: #0771ea; 
+  font-size: 1.5rem; 
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #094bb4; 
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -994,4 +1015,15 @@ label {
 }
 
 @media (min-width: 769px) {
+}
+
+@media (max-width: 768px) {
+  .contact-social {
+      flex-direction: column; 
+      gap: 10px; 
+  }
+
+  .social-links {
+      justify-content: center; 
+  }
 }
