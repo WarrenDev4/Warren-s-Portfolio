@@ -945,6 +945,7 @@ label {
   }
 
   .about-text {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
   }
 
@@ -958,6 +959,15 @@ label {
 
   .skills-section h7 {
     font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
   .skills-section h6 {
