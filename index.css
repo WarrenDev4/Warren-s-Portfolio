@@ -37,8 +37,6 @@ body {
   margin-right: auto; 
 }
 
-
-/* Hero Section */
 .hero {
   display: flex;
   justify-content: center; 
@@ -917,6 +915,7 @@ label {
   }
 
   .hero-text h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 2rem;
   }
 
