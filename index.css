@@ -627,7 +627,7 @@ h1, h3 {
 }
 
 .project-details a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .hero {
