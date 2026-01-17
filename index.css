@@ -83,7 +83,7 @@ body {
 .hero-text .btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2776f4; 
+  background-color: #1E90FF; 
   color: #fff; 
   text-decoration: none;
   border-radius: 20px;
@@ -853,7 +853,7 @@ label {
 }
 
 .social-links a {
-  color: #2776f4; 
+  color: #1E90FF; 
   font-size: 1.5rem; 
   transition: color 0.3s ease;
 }
