@@ -170,10 +170,11 @@ body {
 }
 
 .about-image img {
-  width: 100%; 
-  max-width: 300px; 
+  width: 145%; 
+  height: 100%;
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  margin-left: -70px;
 }
 
 .about-text {
@@ -989,14 +990,21 @@ label {
     padding: 20px 10px;
   }
 
-  .about-image {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
+  .hero,
+.hero-content,
+.content-section,
+.about-image {
+  width: 100%;
+  max-width: none !important;
+}
 
-  .about-image img {
-    max-width: 100%;
-  }
+.about-image img {
+  width: 600px;
+  height: auto;
+  display: block;
+}
+
+
 
   .about-text {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
