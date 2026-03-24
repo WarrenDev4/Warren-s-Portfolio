@@ -177,6 +177,21 @@ body {
   margin-left: -70px;
 }
 
+@media (max-width: 768px) {
+  .about-image img {
+    width: 100%;
+    height: auto;
+    margin-left: 0;     
+    max-width: 100%;
+    display: block;
+  }
+
+  .about-image {
+    width: 100%;
+    margin-right: 0;    
+  }
+}
+
 .about-text {
   flex: 2; 
 }
