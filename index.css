@@ -928,11 +928,25 @@ label {
 .content-section1 { animation-delay: 1s; }
 .contact-container { animation-delay: 1.2s; }
 
-.hero-text,
+.hero-text {
+  opacity: 0;
+  animation: bringTogether 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.3s;
+}
+
 .hero-image {
   opacity: 0;
- animation: bringTogether 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.3s;
+  animation: fadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.9s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .content-section {
@@ -1227,7 +1241,7 @@ body {
   right: -280px;
   width: 260px;
   height: 100vh;
-  background: linear-gradient(to bottom, #166ae1, #0e4fa9);
+  background: linear-gradient(to bottom, #1E90FF, #2f86dd);
   z-index: 1000;
   display: flex;
   flex-direction: column;
