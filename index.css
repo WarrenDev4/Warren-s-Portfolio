@@ -425,7 +425,7 @@ body {
 }
 
 .acheivements-section {
-  background: linear-gradient(to bottom,  rgb(66, 176, 239), rgb(32, 54, 111));
+  background-color: #1059c7;
   color: #333;
   padding: 40px 0;
 }
@@ -450,7 +450,7 @@ body {
   margin-bottom: 40px;
   color: white;
   padding: 20px;
-  background: linear-gradient(to bottom,  rgb(63, 151, 201), rgb(52, 84, 164));
+  background-color: #1059c7;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
