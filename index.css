@@ -824,7 +824,7 @@ h6 {
     gap: var(--space-md);
   }
 
-  .hero-text { flex: none; max-width: 100%; width: 100%; }
+  .hero-text { flex: none; max-width: 100%; width: 100%; font-family:'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
   .hero-image { flex: none; width: 100%; margin-top: 0; }
   .hero-image::before { width: 70vw; max-width: 280px; }
   .hero-image img {
