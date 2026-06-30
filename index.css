@@ -104,7 +104,6 @@ textarea:focus-visible {
   display: flex;
   justify-content: flex-end;
   padding: var(--space-sm) var(--space-md);
-  position: sticky;
   top: 0;
   z-index: 500;
 }
@@ -584,7 +583,6 @@ h6 {
   gap: var(--space-md);
   margin-bottom: 0;
   padding: var(--space-md);
-  background: linear-gradient(180deg, var(--card-grad-1), var(--card-grad-2));
   border: none;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
@@ -596,11 +594,6 @@ h6 {
   box-shadow: var(--shadow-md);
 }
 
-.education-item img {
-  width: 90px;
-  border-radius: var(--radius-sm);
-  flex-shrink: 0;
-}
 
 .education-text ul { margin-left: 18px; }
 .education-text ul li { font-size: 1rem; color: #fff; margin-bottom: 6px; }
@@ -690,10 +683,6 @@ h6 {
   transition: transform 0.4s var(--ease);
 }
 
-.experience-item:hover .logo-image,
-.education-item:hover .logo-image {
-  transform: rotate(-4deg) scale(1.05);
-}
 
 .logo-image {
   width: 80px;
@@ -731,6 +720,8 @@ h6 {
   align-items: center;
   gap: var(--space-md);
   color: #fff;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid transparent;
   padding: var(--space-md);
   border-radius: var(--radius-md);
   margin-bottom: var(--space-md);
