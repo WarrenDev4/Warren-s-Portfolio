@@ -411,6 +411,8 @@ h6 {
   line-height: 1.7;
   color: var(--text-light);
   margin-bottom: var(--space-sm);
+  font-weight: 500;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .content2,
