@@ -953,7 +953,7 @@ h6 {
     border-width: 4px;
   }
 
-  .hero-text h1 { font-size: 2.1rem; }
+  .hero-text h1 { font-size: 2.1rem; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;}
   .hero-text p { font-size: 1.25rem; }
   .hero-text .new { font-size: 1rem; }
 
@@ -964,7 +964,7 @@ h6 {
 
   .social-links { justify-content: center; }
 
-  .content-section,
+  /* FIXED: Removed .content-section from display:none so other pages show content */
   .acheivement-item,
   .content2::before { display: none; }
 
