@@ -541,6 +541,7 @@ h6 {
   flex-shrink: 0;
 }
 
+.experience-text h1 { font-size: 1.4rem; margin-bottom: 2px; }
 .experience-text h2 { font-size: 1.05rem; color: #fff; font-weight: 600; margin-bottom: 2px; }
 .experience-text h3 { font-size: 0.92rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; }
 .experience-text p { font-size: 1rem; line-height: 1.6; color: #fff; }
@@ -803,6 +804,8 @@ h6 {
 @media (max-width: 900px) {
   .nav_links { margin-right: var(--space-md); gap: var(--space-sm); }
   .hero-content { gap: var(--space-lg); }
+  .hero-text { flex-basis: 420px; }
+  .hero-image { flex-basis: 360px; }
   .hero-image img { max-width: 320px; }
   .hero-image::before { max-width: 350px; }
 }
@@ -812,12 +815,35 @@ h6 {
   .menu-overlay { display: block; }
   .hamburger { display: flex; }
 
-  .hero { min-height: auto; padding: 60px var(--space-sm) 40px; }
-  .hero-content { flex-direction: column-reverse; text-align: center; gap: var(--space-lg); }
-  .hero-text { max-width: 100%; }
-  .hero-image { width: 100%; margin-top: 0; }
-  .hero-image::before { width: 88vw; max-width: 340px; }
-  .hero-image img { max-width: min(82vw, 340px); width: 82vw; margin: 0 auto; border-width: 5px; }
+  .hero { min-height: auto; padding: 56px var(--space-sm) 36px; }
+
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .hero-text { flex: none; max-width: 100%; width: 100%; }
+  .hero-image { flex: none; width: 100%; margin-top: 0; }
+  .hero-image::before { width: 70vw; max-width: 280px; }
+  .hero-image img {
+    max-width: min(68vw, 280px);
+    width: 68vw;
+    margin: 0 auto;
+    border-width: 4px;
+  }
+
+  .hero-text h1 { font-size: 2.1rem; }
+  .hero-text p { font-size: 1.25rem; }
+  .hero-text .new { font-size: 1rem; }
+
+  .contact-social {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .social-links { justify-content: center; }
 
   .content-section,
   .acheivement-item,
@@ -826,6 +852,11 @@ h6 {
   .project-container {
     flex-direction: column;
     text-align: center;
+  }
+
+  .logo-image,
+  .project-logo {
+    margin: 0 auto var(--space-sm);
   }
 
   .contact-container { flex-direction: column; padding: var(--space-sm); }
