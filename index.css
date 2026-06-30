@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* ============================
-   Design tokens (same palette,
-   just named for consistency)
-   ============================ */
 :root {
   --bg-top: #8596cb;
   --bg-bottom: #eaeefb;
@@ -96,9 +92,6 @@ textarea:focus-visible {
   background: var(--accent-light);
 }
 
-/* ============================
-   Header / Nav
-   ============================ */
 .header {
   width: 100%;
   display: flex;
@@ -147,9 +140,6 @@ textarea:focus-visible {
   color: #0f4b87;
 }
 
-/* ============================
-   Hamburger / Mobile Menu
-   ============================ */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -236,9 +226,6 @@ textarea:focus-visible {
   pointer-events: all;
 }
 
-/* ============================
-   Hero
-   ============================ */
 .hero {
   display: flex;
   justify-content: center;
@@ -395,9 +382,6 @@ textarea:focus-visible {
   border: 6px solid rgba(255, 255, 255, 0.3);
 }
 
-/* ============================
-   Section headings (shared)
-   ============================ */
 h1 {
   position: relative;
   font-family: monospace;
@@ -455,9 +439,6 @@ h6 {
   font-weight: 100;
 }
 
-/* ============================
-   Generic content sections
-   ============================ */
 .content-section {
   display: flex;
   align-items: flex-start;
@@ -501,9 +482,6 @@ h6 {
   grid-column: 1 / -1;
 }
 
-/* ============================
-   Skills
-   ============================ */
 .skills-section {
   background: transparent;
   padding: var(--space-xl) 0;
@@ -551,9 +529,6 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* ============================
-   Education
-   ============================ */
 .education-section {
   background: transparent;
   padding: var(--space-xl) 0;
@@ -640,9 +615,6 @@ h6 {
   color: #fff;
 }
 
-/* ============================
-   Experience
-   ============================ */
 .content2 {
   max-width: 1100px;
   margin: 0 auto;
@@ -697,9 +669,6 @@ h6 {
 .experience-text h3 { font-size: 0.92rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; }
 .experience-text p { font-size: 1rem; line-height: 1.6; color: #fff; }
 
-/* ============================
-   Achievements
-   ============================ */
 .acheivements-section {
   background: transparent;
   padding: var(--space-xl) 0;
@@ -740,9 +709,6 @@ h6 {
   border-radius: var(--radius-md);
 }
 
-/* ============================
-   Projects
-   ============================ */
 .project-container {
   display: flex;
   align-items: center;
@@ -789,9 +755,6 @@ h6 {
   margin-bottom: 8px;
 }
 
-/* ============================
-   Contact
-   ============================ */
 .contact-container {
   display: flex;
   justify-content: space-between;
@@ -878,9 +841,6 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* ============================
-   Services / CTA (if used)
-   ============================ */
 .services-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -926,9 +886,7 @@ h6 {
   transform: translateY(-2px);
 }
 
-/* ============================
-   Animations
-   ============================ */
+
 @keyframes rise {
   0% { opacity: 0; transform: translateY(24px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -961,9 +919,7 @@ h6 {
   }
 }
 
-/* ============================
-   Responsive
-   ============================ */
+
 @media (max-width: 900px) {
   .nav_links { margin-right: var(--space-md); gap: var(--space-sm); }
   .hero-content { gap: var(--space-lg); }
