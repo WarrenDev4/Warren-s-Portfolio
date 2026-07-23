@@ -524,9 +524,9 @@ h6 {
 
 .bubble:hover {
   background-color: rgba(100, 149, 255, 0.22);
-  border-color: #6495ff;
+  border-color: #52a4f1;
   color: #ffffff;
-  box-shadow: 0 0 16px rgba(100, 149, 255, 0.4);
+  box-shadow: 0 0 16px rgba(0, 191, 255, 0.538);
   transform: translateY(-2px);
 }
 
