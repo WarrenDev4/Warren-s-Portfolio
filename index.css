@@ -655,7 +655,7 @@ h6 {
 .name {
     display: flex;
     align-items: center;
-    gap: 8px;                 /* Space between logo and name */
+    gap: 8px;                 
 
     font-size: 1.8rem;
     font-weight: 210;
@@ -674,7 +674,7 @@ h6 {
     display: block;
     flex-shrink: 0;
 
-    margin-top: -2px; /* Fine tune vertical alignment */
+    margin-top: -2px; 
 }
 
 .logo-image {
