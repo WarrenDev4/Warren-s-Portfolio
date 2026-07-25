@@ -959,6 +959,22 @@ h6 {
 }
 
 @media (max-width: 768px) {
+
+    .name {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 1rem;
+    }
+
+    .logo {
+        width: 72px;
+        height: 52px;
+    }
+
+}
+
+@media (max-width: 768px) {
   body{overflow-x:hidden;}
   section{padding:60px 20px;}
   .header{padding:15px 20px;}
