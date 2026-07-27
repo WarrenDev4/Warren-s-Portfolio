@@ -842,7 +842,7 @@ h6 {
   }
 
   .content-section { flex-direction: column; text-align: left; gap: 20px; padding: 0 16px; }
-  .about-image img { width: 140px; max-width: 140px; margin: 0 auto; }
+  .about-image img { width: 140px; max-width: 140px; margin: 0 auto;   image-rendering: high-quality;}
   .about-text p { font-size: 1rem; line-height: 1.6; }
   .skill-bubbles { justify-content: flex-start; }
   .content2::before { display: none; }
