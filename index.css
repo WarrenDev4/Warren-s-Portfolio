@@ -609,6 +609,7 @@ h6 {
   justify-content: center;
   align-items: center;
 }
+
 .about-image img {
   width: 100%;
   max-width: 420px;
@@ -624,10 +625,17 @@ h6 {
   animation: fadeIn 1.2s var(--ease) forwards, float 5s ease-in-out infinite;
 }
 
-.about-image::before { 
-  width: min(76vw, 310px); 
-  height: min(76vw, 310px); 
-  max-width: 310px; 
+.about-image::before {
+  content: '';
+  position: absolute;
+  width: calc(100% + 36px);
+  aspect-ratio: 1 / 1;
+  max-width: 460px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(87, 220, 241, 0.12));
+  filter: blur(2px);
+  z-index: 0;
+  animation: pulseGlow 3.5s ease-in-out infinite;
 }
 
 @keyframes pulseGlow {
