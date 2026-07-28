@@ -602,9 +602,16 @@ h6 {
    ABOUT PAGE & SKILL BUBBLES
    ========================================================================== */
 
-.about-image { flex: 1; }
+.about-image { 
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .about-image img {
   width: 100%;
+  max-width: 420px;
   aspect-ratio: 1 / 1;
   image-rendering: high-quality;
   object-fit: cover;
@@ -612,7 +619,17 @@ h6 {
   border-radius: 50%;
   box-shadow: var(--shadow-md);
   border: 4px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1.2s var(--ease) forwards, float 5s ease-in-out infinite;
 }
+
+.about-image::before { 
+  width: min(76vw, 310px); 
+  height: min(76vw, 310px); 
+  max-width: 310px; 
+}
+
 .about-text { flex: 1.6; }
 .about-text p, .content-section p { font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: var(--space-sm); }
 
@@ -817,13 +834,16 @@ h6 {
   /* HERO / HOME SECTION (UNTOUCHED) */
   .hero { min-height: auto; padding: 56px var(--space-sm) 36px; }
   .hero-content { flex-direction: column; align-items: center; text-align: center; gap: var(--space-md); }
+  
   .hero-text { flex: none; max-width: 100%; width: 100%; }
   .hero-text h1 { font-size: 2rem; line-height: 1.2; font-family: 'Poppins', 'Segoe UI', sans-serif; font-weight: 500; }
   .hero-text p { font-size: 1.1rem; }
   .hero-text .new { font-size: .95rem; line-height: 1.6; }
+  .about-image { flex: none; width: 100%; margin-top: 0; }
   .hero-image { flex: none; width: 100%; margin-top: 0; }
   .hero-image::before { width: 260px; height: 260px; max-width: 260px; }
   .hero-image img { width: 240px; height: 240px; max-width: 240px; border-width: 4px; margin: auto; }
+  .about-image::before { width: 260px; height: 260px; max-width: 260px; }
   .contact-social { display: flex; flex-direction: column; align-items: center; gap: 20px; }
   .btn { width: 220px; text-align: center; }
   .social-links { justify-content: center; gap: 20px; }
@@ -842,10 +862,13 @@ h6 {
   }
 
   .content-section { flex-direction: column; text-align: left; gap: 20px; padding: 0 16px; }
-  .about-image img { width: min(70vw, 280px); height: min(70vw, 280px); margin: 0 auto; image-rendering: high-quality; }
+  .about-image img { width: min(70vw, 280px); height: min(70vw, 280px); margin: 0 auto; image-rendering: high-quality; animation: fadeIn 1.2s var(--ease) forwards, float 5s ease-in-out infinite;}
+  .about-text h1 {font-family: Arial, Helvetica, sans-serif;}
   .about-text p { font-size: 1rem; line-height: 1.6; }
   .skill-bubbles { justify-content: flex-start; }
   .content2::before { display: none; }
+  .content2 h1 {font-family: Arial, Helvetica, sans-serif;}
+  .content2 h1 {font-family: Arial, Helvetica, sans-serif;}
   .content3 { grid-template-columns: 1fr; padding: 16px; gap: var(--space-md); }
   .content3 h1 { grid-column: 1 / -1; text-align: left; }
   .education-section .content-section { grid-template-columns: 1fr; }
