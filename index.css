@@ -390,7 +390,6 @@ textarea:focus-visible {
   border: 6px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Typography Defaults */
 h1 {
   position: relative;
   font-family: monospace;
@@ -433,9 +432,6 @@ h6 {
   font-weight: 100;
 }
 
-/* ==========================================================================
-   GLOBAL SPACING FIX: Brought all sub-pages right beneath the navbar
-   ========================================================================== */
 .content-section {
   display: flex;
   align-items: flex-start;
@@ -494,9 +490,6 @@ h6 {
   gap: var(--space-md);
 }
 
-/* ==========================================================================
-   PREMIUM CARD STYLING (Experience, Education)
-   ========================================================================== */
 .experience-item,
 .education-item,
 .acheivement-item {
@@ -526,15 +519,12 @@ h6 {
   border-color: rgba(255, 255, 255, 0.5); 
 }
 
-/* ==========================================================================
-   STRUCTURED PROJECT CARDS
-   ========================================================================== */
 .project-container {
   display: flex;
-  align-items: flex-start; /* Better alignment for text-heavy cards */
-  gap: 28px; /* Slightly wider gap for clarity */
+  align-items: flex-start;
+  gap: 28px;
   margin-bottom: var(--space-md);
-  padding: 32px; /* Generous framing */
+  padding: 32px;
   background: linear-gradient(180deg, var(--card-grad-1), var(--card-grad-2));
   color: #fff;
   border-radius: var(--radius-md);
@@ -556,7 +546,7 @@ h6 {
   height: 88px;
   object-fit: contain;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.08); /* Dedicated frosted block for the logo */
+  background: rgba(255, 255, 255, 0.08); 
   border-radius: var(--radius-md);
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -579,7 +569,7 @@ h6 {
 .project {
   text-decoration: none;
   color: #ffffff;
-  font-size: 1.35rem; /* Slightly larger heading */
+  font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   transition: color 0.25s ease;
@@ -593,14 +583,10 @@ h6 {
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Structure separator */
+  border-top: 1px solid rgba(255, 255, 255, 0.15); 
   padding-top: 12px;
   margin-top: 6px;
 }
-
-/* ==========================================================================
-   ABOUT PAGE & SKILL BUBBLES
-   ========================================================================== */
 
 .about-image { 
   flex: 1;
@@ -650,7 +636,6 @@ h6 {
 .category-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: var(--space-xs); letter-spacing: 0.08em; text-transform: uppercase; }
 .skill-bubbles { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* Premium Bubbles */
 .bubble {
   padding: 8px 18px;
   border-radius: 999px;
@@ -672,9 +657,6 @@ h6 {
   box-shadow: 0 6px 16px rgba(87, 220, 241, 0.25);
 }
 
-/* ==========================================================================
-   COMPONENT TYPOGRAPHY & LOGOS
-   ========================================================================== */
 .education-text ul { margin-left: 18px; }
 .education-text ul li { font-size: 1rem; color: #fff; margin-bottom: 6px; }
 .education-text h1, .education-text h2 { color: #fff; }
@@ -710,9 +692,6 @@ h6 {
 .experience-text h3 { font-size: 0.92rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 10px; }
 .experience-text p { font-size: 1rem; line-height: 1.6; color: #fff; }
 
-/* ==========================================================================
-   MODERN CONTACT FORM
-   ========================================================================== */
 .contact-info,
 .contact-form {
   padding: var(--space-md);
@@ -832,9 +811,6 @@ h6 {
     .logo { width: 72px; height: 52px; }
 }
 
-/* ==========================================================================
-   MOBILE OPTIMIZATIONS
-   ========================================================================== */
 @media (max-width: 768px) {
   body { overflow-x: hidden; }
   section { padding: 60px 20px; }
@@ -844,7 +820,6 @@ h6 {
   .menu-overlay { display: block; }
   .hamburger { display: flex; }
 
-  /* HERO / HOME SECTION (UNTOUCHED) */
   .hero { min-height: auto; padding: 56px var(--space-sm) 36px; }
   .hero-content { flex-direction: column; align-items: center; text-align: center; gap: var(--space-md); }
   
@@ -861,8 +836,6 @@ h6 {
   .btn { width: 220px; text-align: center; }
   .social-links { justify-content: center; gap: 20px; }
   .social-links a { font-size: 1.7rem; }
-
-  /* SUB-PAGES COMPACT LAYOUT */
   .content-section, 
   .content2, 
   .content3, 
@@ -885,8 +858,6 @@ h6 {
   .content3 { grid-template-columns: 1fr; padding: 16px; gap: var(--space-md); }
   .content3 h1 { grid-column: 1 / -1; text-align: left; }
   .education-section .content-section { grid-template-columns: 1fr; }
-
-  /* COMPACT MOBILE CARDS */
   .education-item, 
   .experience-item, 
   .project-container,
@@ -908,7 +879,6 @@ h6 {
     flex-shrink: 0;
   }
 
-  /* Specific mobile adjustments for the newly structured project card */
   .project-logo {
     width: 60px;
     height: 60px;
@@ -929,7 +899,6 @@ h6 {
   .project { font-size: 1.15rem; }
   .project-details p { font-size: 0.95rem; line-height: 1.5; margin-top: 4px; padding-top: 8px; }
 
-  /* CONTACT PAGE */
   .contact-container { flex-direction: column; gap: 16px; padding: 16px; }
   .contact-info, .contact-form { width: 100%; padding: 20px; }
   .contact-form input, .contact-form textarea { font-size: 16px; padding: 10px; }
