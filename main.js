@@ -3,9 +3,75 @@
    Linked from index, about, experience, projects, contact.
    ============================================================= */
 
-/* ---- Change these two values in ONE place ---- */
-const WEB3FORMS_KEY = '6b2ebc12-1704-427c-9472-8cf6ddf4ebd9';
-const CONTACT_EMAIL = 'warrenspencer41@gmail.com';
+/* ---- Configuration -------------------------------------------------------
+   This is a static site: there is no server and no build step, so a .env
+   file cannot be read here. Set the key one of two ways:
+
+   1. Edit the fallback string below. Simplest, and fine — a Web3Forms
+      access key is meant to be public. It only permits sending mail to
+      the address you verified, so it is useless to anyone else.
+
+   2. Or create config.js next to this file and load it FIRST:
+        <script src="config.js"></script>
+        <script src="main.js"></script>
+      with contents:
+        window.PORTFOLIO_CONFIG = {
+          web3formsKey: 'your-key-here',
+          contactEmail: 'warrenspencer41@gmail.com'
+        };
+      You can then gitignore config.js. Note this keeps the key out of
+      your repo, not out of the browser — visitors can still read it.
+   ------------------------------------------------------------------------ */
+const CONFIG = window.PORTFOLIO_CONFIG || {};
+const WEB3FORMS_KEY = CONFIG.web3formsKey || 'YOUR_ACCESS_KEY_HERE';
+const CONTACT_EMAIL = CONFIG.contactEmail || 'warrenspencer41@gmail.com';
+
+function isKeyConfigured() {
+  return typeof WEB3FORMS_KEY === 'string' &&
+         WEB3FORMS_KEY.length > 10 &&
+         WEB3FORMS_KEY !== 'YOUR_ACCESS_KEY_HERE';
+}
+
+/* Escapes text before it goes into an HTML attribute */
+function escapeAttr(value) {
+  return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+                      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+
+/* ===== Scroll lock =====
+   iOS Safari ignores `overflow: hidden` on body, so the page keeps scrolling
+   behind the drawer and the modal. Pinning body with position: fixed does
+   hold, but resets scroll to the top — so the offset is stored and restored.
+   Reference-counted, because closing the drawer to open the modal would
+   otherwise unlock while the modal is still open. */
+let scrollLockOffset = 0;
+let scrollLockCount = 0;
+
+function lockScroll() {
+  if (scrollLockCount++ > 0) return;
+  scrollLockOffset = window.scrollY || window.pageYOffset || 0;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollLockOffset}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+}
+
+function unlockScroll() {
+  scrollLockCount = Math.max(0, scrollLockCount - 1);
+  if (scrollLockCount > 0) return;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  // Jump back without animating, even though html has scroll-behavior: smooth
+  const previous = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.scrollTo(0, scrollLockOffset);
+  document.documentElement.style.scrollBehavior = previous;
+}
 
 
 /* ===== Mobile menu ===== */
@@ -21,7 +87,11 @@ const CONTACT_EMAIL = 'warrenspencer41@gmail.com';
     overlay.classList.toggle('open', open);
     hamburger.setAttribute('aria-expanded', String(open));
     hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+
+    const wasOpen = document.body.classList.contains('menu-open');
     document.body.classList.toggle('menu-open', open);
+    if (open && !wasOpen) lockScroll();
+    else if (!open && wasOpen) unlockScroll();
   }
 
   hamburger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
@@ -82,7 +152,7 @@ const CONTACT_EMAIL = 'warrenspencer41@gmail.com';
         <p class="modal-sub">Send me a message and I'll get back to you soon.</p>
 
         <form class="modal-form" id="talkForm">
-          <input type="hidden" name="access_key" value="${WEB3FORMS_KEY}">
+          <input type="hidden" name="access_key" value="${escapeAttr(WEB3FORMS_KEY)}">
           <input type="hidden" name="subject" value="New message from your portfolio">
           <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
 
@@ -117,6 +187,7 @@ const CONTACT_EMAIL = 'warrenspencer41@gmail.com';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
+    lockScroll();
     setTimeout(() => document.getElementById('talkName').focus(), 350);
   }
 
@@ -124,6 +195,7 @@ const CONTACT_EMAIL = 'warrenspencer41@gmail.com';
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    unlockScroll();
     status.textContent = '';
     status.className = 'form-status';
     if (lastFocused) lastFocused.focus();
@@ -159,9 +231,11 @@ const CONTACT_EMAIL = 'warrenspencer41@gmail.com';
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    if (WEB3FORMS_KEY === 'YOUR_ACCESS_KEY_HERE') {
-      status.textContent = 'Setup needed: add your Web3Forms access key in main.js.';
+    if (!isKeyConfigured()) {
+      status.innerHTML = 'This form isn\'t set up yet. Please email me at ' +
+        '<a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>.';
       status.classList.add('error');
+      console.warn('[main.js] Set your Web3Forms access key in the CONFIG block at the top of main.js.');
       return;
     }
 
