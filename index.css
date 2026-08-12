@@ -71,9 +71,14 @@
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  /* Stops the rubber-band bounce past the top/bottom on mobile */
+  overscroll-behavior: none;
 }
 
 body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior: none;
   background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
   background: linear-gradient(180deg in oklab, var(--bg-top) 8%, var(--bg-bottom) 100%);
   background-attachment: fixed;
@@ -281,12 +286,13 @@ textarea:focus-visible {
   right: -280px;
   width: 260px;
   height: 100vh;
+  height: 100dvh; /* accounts for mobile browser toolbars that slide away */
   font-family: "Inter", sans-serif;
   background: linear-gradient(180deg, #04090f4b, #0d151e71);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding: 90px 30px 30px;
+  padding: 90px 30px max(30px, env(safe-area-inset-bottom));
   gap: 6px;
   transition: right 0.45s var(--ease);
   box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3);
@@ -307,6 +313,27 @@ textarea:focus-visible {
 .mobile-menu a:hover {
   color: var(--accent-bright);
   padding-left: 8px;
+}
+
+/* Let's Talk sits at the bottom of the drawer as a button, not a list item */
+.mobile-menu .talk-link-mobile {
+  margin-top: auto;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.mobile-menu .talk-link-mobile:hover,
+.mobile-menu .talk-link-mobile:active {
+  background: #ffffff;
+  color: #111;
+  padding-left: 18px;
 }
 
 .menu-overlay {
@@ -1253,22 +1280,42 @@ main > section:not(.hero):first-child {
   section { padding: 60px 20px; }
 
   .header { padding: 15px 20px; }
-  .name { gap: 3px; font-size: 1.45rem; }
+  .name { gap: 3px; font-size: 1.45rem; max-width: 60%; }
   .logo { width: 72px; height: 52px; }
   .nav_links { display: none; }
+  .nav { gap: 0; }
   .menu-overlay { display: block; }
   .hamburger { display: flex; }
 
-  /* Clear the fixed hamburger sitting at right: 20px, 44px wide */
-  .talk-btn {
-    margin-right: 56px;
-    padding: 8px 16px;
-    font-size: 0.85rem;
+  /* Long tool lists and URLs shouldn't push the layout sideways */
+  p, li, h1, h2, h3 { overflow-wrap: break-word; }
+
+  /* Let's Talk moves into the slide-out menu on mobile */
+  .talk-btn { display: none; }
+
+  /* Theme toggle docks beside the hamburger and matches its shape */
+  .theme-btn {
+    position: fixed;
+    top: 16px;
+    right: 74px; /* hamburger occupies 20px–64px from the right edge */
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    z-index: 9999;
   }
 
-  .theme-btn { width: 36px; height: 36px; font-size: 0.9rem; }
+  /* No hover state on touch — it sticks after a tap */
+  .theme-btn:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+  }
 
-  .modal { padding: var(--space-sm); }
+  .theme-btn:active { transform: scale(0.92); }
+
+  .modal { padding: var(--space-sm); max-height: 85dvh; }
   .modal h2 { font-size: 1.35rem; }
   /* 16px prevents iOS Safari zooming on focus */
   .modal-form input,
@@ -1369,4 +1416,58 @@ main > section:not(.hero):first-child {
   h1 { font-size: 1.75rem; }
   h2 { font-size: 1.2rem; }
   h3 { font-size: 1rem; }
+}
+
+/* ==========================================================================
+   SMALL PHONES
+   ========================================================================== */
+@media (max-width: 430px) {
+  .name { font-size: 1.2rem; max-width: 52%; }
+  .logo { width: 56px; height: 44px; }
+
+  .hamburger { right: 14px; }
+  .theme-btn { right: 66px; }
+
+  .hero { padding: 48px var(--space-sm) 28px; }
+  .hero-text h1 { font-size: 1.75rem; }
+  .hero-image::before { width: 220px; height: 220px; max-width: 220px; }
+  .hero-image img { width: 200px; height: 200px; max-width: 200px; }
+
+  .btn { width: 100%; max-width: 260px; }
+
+  .content-section { padding: 0 14px; }
+  .content2, .content3 { padding-left: 14px; padding-right: 14px; }
+
+  .education-item,
+  .experience-item,
+  .project-container,
+  .acheivement-item { padding: 14px; gap: 12px; }
+
+  .bubble { padding: 7px 14px; font-size: 0.85rem; }
+
+  .mobile-menu { width: 82vw; right: -86vw; }
+  .mobile-menu.open { right: 0; }
+}
+
+/* ==========================================================================
+   TOUCH DEVICES
+   Hover styles latch on after a tap on touchscreens, so they're limited
+   to devices that actually have a pointer.
+   ========================================================================== */
+@media (hover: none) {
+  .experience-item:hover,
+  .education-item:hover,
+  .acheivement-item:hover,
+  .project-container:hover,
+  .service-card:hover,
+  .bubble:hover,
+  .btn:hover,
+  .social-links a:hover,
+  .contact-me a:hover,
+  .modal-submit:hover {
+    transform: none;
+  }
+
+  .btn:hover::before { left: -75%; }
+  .modal-close:hover { transform: none; }
 }
