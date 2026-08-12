@@ -770,10 +770,9 @@ h6 {
 }
 
 /* Sub-pages have no .hero wrapper, so the leading section needs its own
-   clearance from the navbar. index.html is unaffected — its first child
-   is .hero, which already carries padding. */
-main > .content-section:first-child,
-main > section:first-child {
+   clearance from the navbar. .hero is excluded — it carries its own
+   padding, so index.html keeps its original position. */
+main > section:not(.hero):first-child {
   margin-top: var(--space-lg);
 }
 
@@ -1307,8 +1306,7 @@ main > section:first-child {
   }
 
   /* Must come after the rule above — both use !important, so source order wins */
-  main > .content-section:first-child,
-  main > section:first-child {
+  main > section:not(.hero):first-child {
     margin-top: 32px !important;
   }
 
