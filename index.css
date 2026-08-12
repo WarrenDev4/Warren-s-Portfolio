@@ -73,10 +73,9 @@ html {
   overflow-x: hidden;
   overflow-x: clip; /* clip doesn't create a scroll container, hidden does */
   scroll-behavior: smooth;
-  /* Stops the rubber-band bounce past the top/bottom on mobile */
-  overscroll-behavior: none;
 
-  /* Solid floor so no white can ever show through */
+  /* Solid floor: the overscroll area shows this colour, never white,
+     so the natural bounce can stay enabled */
   background-color: var(--bg-bottom);
 
   /* Tells the browser what to paint during navigation — kills the white flash */
@@ -104,7 +103,6 @@ html[data-theme="dark"] {
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  overscroll-behavior: none;
   /* Transparent: html::before carries the gradient, body::after the dark overlay */
   background: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1517,12 +1515,8 @@ main > section:not(.hero):first-child {
     background: rgba(255, 255, 255, 0.09);
   }
 
-  /* Never-ending float/glow loops keep the compositor busy while you scroll */
-  .hero-image,
-  .about-image img {
-    animation: fadeIn 1.2s var(--ease) forwards;
-  }
-
+  /* The float is kept — it's a single composited transform, which is cheap.
+     Only the glow ring is dropped: it animates box-shadow, which repaints. */
   .hero-image::before,
   .about-image::before {
     animation: none;
