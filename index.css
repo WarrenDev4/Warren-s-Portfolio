@@ -719,7 +719,6 @@ body.menu-open {
 }
 
 .social-links a:hover {
-  color: var(--accent-bright);
   transform: translateY(-3px) scale(1.1);
 }
 
