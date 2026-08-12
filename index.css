@@ -135,27 +135,7 @@ textarea:focus-visible {
   border-radius: 4px;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-bottom);
-  transition: background 0.55s ease;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-track {
-  background: var(--bg-dark-top);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-light);
-}
+/* Scrollbar left as the browser default — neutral grey in both themes */
 
 /* ==========================================================================
    HEADER / NAV
@@ -789,6 +769,14 @@ h6 {
   animation: rise 0.9s var(--ease) forwards;
 }
 
+/* Sub-pages have no .hero wrapper, so the leading section needs its own
+   clearance from the navbar. index.html is unaffected — its first child
+   is .hero, which already carries padding. */
+main > .content-section:first-child,
+main > section:first-child {
+  margin-top: var(--space-lg);
+}
+
 .content2 {
   max-width: 1100px;
   margin: 0 auto;
@@ -1318,6 +1306,12 @@ h6 {
     padding-top: 0 !important;
   }
 
+  /* Must come after the rule above — both use !important, so source order wins */
+  main > .content-section:first-child,
+  main > section:first-child {
+    margin-top: 32px !important;
+  }
+
   .content-section { flex-direction: column; text-align: left; gap: 20px; padding: 0 16px; }
   .about-text h1 { font-family: Arial, Helvetica, sans-serif; }
   .about-text p { font-size: 1rem; line-height: 1.6; }
@@ -1378,4 +1372,3 @@ h6 {
   h2 { font-size: 1.2rem; }
   h3 { font-size: 1rem; }
 }
-
