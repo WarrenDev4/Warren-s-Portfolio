@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* Fonts are loaded via <link> in each page's <head> — an @import here
+   would delay first paint and cause a flash on navigation. */
 
 /* ==========================================================================
    TOKENS
@@ -73,15 +74,31 @@ html {
   scroll-behavior: smooth;
   /* Stops the rubber-band bounce past the top/bottom on mobile */
   overscroll-behavior: none;
+
+  /* The gradient lives here, not on body. html paints the whole canvas,
+     so there's no uncovered strip when mobile toolbars resize the viewport. */
+  background-color: var(--bg-bottom);
+  background-image: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  background-image: linear-gradient(180deg in oklab, var(--bg-top) 8%, var(--bg-bottom) 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* Tells the browser what to paint during navigation — kills the white flash */
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  background-color: var(--bg-dark-bottom);
+  color-scheme: dark;
 }
 
 body {
   min-height: 100vh;
   min-height: 100dvh;
   overscroll-behavior: none;
-  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
-  background: linear-gradient(180deg in oklab, var(--bg-top) 8%, var(--bg-bottom) 100%);
-  background-attachment: fixed;
+  /* Transparent: html carries the gradient, body::after the dark overlay */
+  background: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-light);
   line-height: 1.5;
