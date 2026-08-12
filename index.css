@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
   --bg-top: #8596cb;
@@ -46,11 +46,22 @@ html {
 
 body {
   background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  background: linear-gradient(180deg in oklab, var(--bg-top) 8%, var(--bg-bottom) 100%);
   background-attachment: fixed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-light);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 a {
@@ -102,6 +113,20 @@ textarea:focus-visible {
   z-index: 500;
 }
 
+.header {
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;          
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .row { width: 100%; }
 
 .nav {
@@ -110,23 +135,16 @@ textarea:focus-visible {
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-}
-
-.name {
-  font-size: 1.8rem;
-  font-weight: 210;
-  letter-spacing: -0.01em;
-  font-family: "Rubik", sans-serif;
-  color: var(--text-light);
-  text-decoration: none;
-  margin-right: auto;
+  position: relative;   
 }
 
 .nav_links {
   list-style: none;
   display: flex;
   gap: var(--space-md);
-  margin-right: var(--space-lg);
+  position: absolute;          
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav_link a {
@@ -177,6 +195,206 @@ textarea:focus-visible {
 .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ==========================================================================
+   APPEND THIS TO THE END OF index.css
+   "Let's Talk" nav button + contact modal
+   ========================================================================== */
+
+/* ===== Nav button ===== */
+.talk-btn {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--ease);
+}
+
+.talk-btn:hover {
+  background: #ffffff;
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000; /* above the hamburger (99999) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+  background: rgba(7, 19, 90, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--card-grad-1), var(--card-grad-2));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-lg), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.4s var(--ease);
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.modal-sub {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-sm);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg);
+}
+
+.modal-form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="email"],
+.modal-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #111;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  resize: vertical;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--accent-bright);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02), 0 0 0 4px rgba(87, 220, 241, 0.25);
+}
+
+.modal-submit {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+
+.modal-submit:hover:not(:disabled) {
+  background: var(--accent-bright);
+  color: #111;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin-top: 12px;
+  min-height: 20px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-status.success { color: #d3ffe8; }
+.form-status.error   { color: #ffe0e0; }
+.form-status a       { color: #fff; text-decoration: underline; }
+
+/* Honeypot: hidden from people, visible to bots */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+body.modal-open,
+body.menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  /* Clear the fixed hamburger sitting at right: 20px, 44px wide */
+  .talk-btn {
+    margin-right: 56px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .modal { padding: var(--space-sm); }
+  .modal h2 { font-size: 1.35rem; }
+
+  /* 16px prevents iOS Safari from zooming on focus */
+  .modal-form input,
+  .modal-form textarea { font-size: 16px; }
+}
 
 .mobile-menu {
   position: fixed;
@@ -288,7 +506,10 @@ textarea:focus-visible {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;      
+  align-items: center;       
+  justify-content: center;   
+  gap: 10px;                 
   position: relative;
   overflow: hidden;
   padding: 12px 28px;
@@ -678,7 +899,19 @@ h6 {
   background: rgba(255, 255, 255, 0.25);
 }
 
-.name { display: flex; align-items: center; gap: 8px; font-size: 1.8rem; font-weight: 210; letter-spacing: -0.01em; font-family: "Rubik", sans-serif; color: var(--text-light); text-decoration: none; margin-right: auto; }
+.name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-light);
+  text-decoration: none;
+  margin-right: auto;
+  transition: color 0.25s ease;
+}
 .name span { line-height: 1; }
 
 .logo { width: 118px; height: 138px; object-fit: contain; display: block; flex-shrink: 0; margin-top: -2px; }
@@ -906,4 +1139,135 @@ h6 {
   h1 { font-size: 1.75rem; }
   h2 { font-size: 1.2rem; }
   h3 { font-size: 1rem; }
+}
+
+/* ==========================================================================
+   APPEND THIS TO THE END OF index.css
+   Dark theme + theme toggle button
+   ========================================================================== */
+
+/* ===== Dark theme palette =====
+   Same blue family as the light theme, stepped down in lightness.
+   Nothing here changes the light theme — it only fires when
+   <html data-theme="dark"> is set. */
+[data-theme="dark"] {
+  --bg-top: #040a20;
+  --bg-bottom: #14245c;
+
+  /* Cards sit ABOVE the darkest background value so they still separate */
+  --card-grad-1: #1e2f6e;
+  --card-grad-2: #2b3d85;
+
+  --accent: #3b6fd4;
+  --accent-light: #5b8ae8;
+  --accent-bright: #57dcf1;
+
+  --text-light: #ffffff;
+  --text-muted: #9aa8d4;
+
+  /* Shadows go near-black and deeper — light-theme shadows disappear
+     against a dark background */
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 52px rgba(0, 0, 0, 0.55);
+}
+
+/* A few rules in your stylesheet hardcode light colors instead of using
+   the variables, so they need explicit dark-theme overrides. */
+
+[data-theme="dark"] .service-card {
+  background: linear-gradient(180deg, var(--card-grad-1), var(--card-grad-2));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .service-card p,
+[data-theme="dark"] .service-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .service-card i {
+  color: var(--accent-bright);
+}
+
+[data-theme="dark"] .acheivement-item {
+  background-color: var(--card-grad-2);
+}
+
+[data-theme="dark"] h6 {
+  color: #7fb2ff;
+}
+
+[data-theme="dark"] .header::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-top);
+}
+
+[data-theme="dark"] .nav_link a:hover {
+  color: var(--accent-bright);
+}
+
+/* ===== Theme toggle button ===== */
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  font-size: 1rem;
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.25s ease, transform 0.35s var(--ease),
+              border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: rotate(-18deg) scale(1.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-btn:active {
+  transform: scale(0.94);
+}
+
+/* Spaces the toggle from the Let's Talk button.
+   .nav_links is absolutely positioned, so gap ignores it. */
+.nav {
+  gap: 12px;
+}
+
+/* Ease the color change on everything that isn't the page gradient.
+   CSS can't tween a linear-gradient, so the backdrop itself snaps —
+   this keeps cards, buttons and borders from snapping with it. */
+.experience-item,
+.education-item,
+.acheivement-item,
+.project-container,
+.service-card,
+.bubble,
+.contact-info,
+.contact-form,
+.modal,
+.btn,
+.talk-btn,
+.theme-btn {
+  transition: background 0.4s ease, background-color 0.4s ease,
+              border-color 0.4s ease, box-shadow 0.4s ease, color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .theme-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
 }
