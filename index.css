@@ -70,9 +70,9 @@
 }
 
 html {
-  overflow-x: hidden;
-  overflow-x: clip; /* clip doesn't create a scroll container, hidden does */
+  overflow-x: clip;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 
   /* Solid floor: the overscroll area shows this colour, never white,
      so the natural bounce can stay enabled */
@@ -103,6 +103,7 @@ html[data-theme="dark"] {
 body {
   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: clip;
   /* Transparent: html::before carries the gradient, body::after the dark overlay */
   background: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -308,8 +309,8 @@ textarea:focus-visible {
   top: 0;
   right: 0;
   width: 260px;
-  height: 100vh;
-  height: 100dvh; /* accounts for mobile browser toolbars that slide away */
+  height: 100dvh;
+  min-height: 100vh;
   font-family: "Inter", sans-serif;
   background: linear-gradient(180deg, #04090f4b, #0d151e71);
   z-index: 1000;
@@ -606,6 +607,8 @@ textarea:focus-visible {
 body.modal-open,
 body.menu-open {
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 /* ==========================================================================
@@ -1306,7 +1309,16 @@ main > section:not(.hero):first-child {
 }
 
 @media (max-width: 768px) {
-  body { overflow-x: hidden; }
+  html {
+    overflow-x: clip;
+    scrollbar-gutter: auto;
+  }
+
+  body {
+    overflow-x: clip;
+    min-width: 0;
+  }
+
   section { padding: 60px 20px; }
 
   .header { padding: 15px 20px; }

@@ -40,17 +40,27 @@ function escapeAttr(value) {
 
 
 /* ===== Scroll lock =====
-   iOS Safari ignores `overflow: hidden` on body, so the page keeps scrolling
-   behind the drawer and the modal. Pinning body with position: fixed does
-   hold, but resets scroll to the top — so the offset is stored and restored.
-   Reference-counted, because closing the drawer to open the modal would
-   otherwise unlock while the modal is still open. */
+   Locks the document without losing the user's exact scroll position.
+   The fixed-body technique is retained for iOS Safari, but all inline
+   state is restored and the final scroll is applied after layout releases
+   the fixed body to prevent close/open jumps. */
 let scrollLockOffset = 0;
 let scrollLockCount = 0;
+let scrollLockStyles = null;
 
 function lockScroll() {
   if (scrollLockCount++ > 0) return;
+
   scrollLockOffset = window.scrollY || window.pageYOffset || 0;
+
+  scrollLockStyles = {
+    position: document.body.style.position,
+    top: document.body.style.top,
+    left: document.body.style.left,
+    right: document.body.style.right,
+    width: document.body.style.width,
+  };
+
   document.body.style.position = 'fixed';
   document.body.style.top = `-${scrollLockOffset}px`;
   document.body.style.left = '0';
@@ -61,16 +71,34 @@ function lockScroll() {
 function unlockScroll() {
   scrollLockCount = Math.max(0, scrollLockCount - 1);
   if (scrollLockCount > 0) return;
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.left = '';
-  document.body.style.right = '';
-  document.body.style.width = '';
-  // Jump back without animating, even though html has scroll-behavior: smooth
-  const previous = document.documentElement.style.scrollBehavior;
-  document.documentElement.style.scrollBehavior = 'auto';
-  window.scrollTo(0, scrollLockOffset);
-  document.documentElement.style.scrollBehavior = previous;
+
+  const previous = scrollLockStyles || {
+    position: '',
+    top: '',
+    left: '',
+    right: '',
+    width: '',
+  };
+
+  document.body.style.position = previous.position;
+  document.body.style.top = previous.top;
+  document.body.style.left = previous.left;
+  document.body.style.right = previous.right;
+  document.body.style.width = previous.width;
+  scrollLockStyles = null;
+
+  const root = document.documentElement;
+  const previousBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+
+  // Wait one frame for the body to leave fixed positioning before restoring
+  // scroll. This removes the visible jump on iOS Safari and mobile Chrome.
+  requestAnimationFrame(() => {
+    window.scrollTo(0, scrollLockOffset);
+    requestAnimationFrame(() => {
+      root.style.scrollBehavior = previousBehavior;
+    });
+  });
 }
 
 
