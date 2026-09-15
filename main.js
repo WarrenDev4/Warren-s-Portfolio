@@ -267,26 +267,34 @@ function unlockScroll() {
       submitBtn.textContent = 'Send message';
     }
   });
+})();
 
-  /* Scroll reveal */
+
+/* ===== Scroll reveal =====
+   The hidden state lives in CSS so it applies before first paint; this only
+   flips .is-visible on as each block scrolls into view. ==================== */
 (function () {
   if (!document.documentElement.classList.contains('js-reveal')) return;
 
-  var blocks = document.querySelectorAll('main > :not(:first-child)');
+  const CARDS = '.project-container, .experience-item, .education-item, .acheivement-item';
+  const blocks = document.querySelectorAll(
+    `main > :not(:first-child), main > :first-child :is(${CARDS})`
+  );
   if (!blocks.length) return;
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('is-visible');
       io.unobserve(entry.target); // reveal once — don't re-hide on the way back up
     });
   }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -8% 0px' // fires just before the block is fully on screen
+    // threshold 0 rather than a ratio: a section taller than the viewport can
+    // never reach a high ratio. The negative bottom margin is what delays the
+    // trigger until the block's top edge is ~90% of the way up the screen.
+    threshold: 0,
+    rootMargin: '0px 0px -10% 0px'
   });
 
-  blocks.forEach(function (el) { io.observe(el); });
-})();
-
+  blocks.forEach((el) => io.observe(el));
 })();

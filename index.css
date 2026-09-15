@@ -1529,34 +1529,53 @@ main > section:not(.hero):first-child {
     transform: translateZ(0);
   }
 
-
+  /* will-change on a permanently-visible element wastes memory; the icon
+     only animates on tap, so scope it to the moment it's animating */
   .theme-btn i { will-change: auto; }
   .theme-btn.swapping i { will-change: transform, opacity; }
 }
 
-html.js-reveal main > :not(:first-child) {
+/* ==========================================================================
+   SCROLL REVEAL
+   `js-reveal` is set on <html> by the inline script in each page's <head>,
+   so the hidden state lands before first paint. No class, nothing hidden —
+   which is what happens when JS is off or reduced motion is on.
+
+   Two groups reveal:
+     1. every top-level block in <main> after the first;
+     2. the repeated cards inside the first block — that's what gives
+        projects.html and experience.html something to animate, since those
+        pages only have one section.
+
+   `translate`, not `transform`, moves the block in: the cards already use
+   `transform` for their hover lift, and translate/transform compose instead
+   of one overwriting the other, so the hover lift still works post-reveal.
+   ========================================================================== */
+html.js-reveal main > :not(:first-child),
+html.js-reveal main > :first-child :is(.project-container, .experience-item, .education-item, .acheivement-item) {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-  will-change: opacity, transform;
-  animation: none; 
+  translate: 0 28px;
+  transition: opacity 0.7s var(--ease), translate 0.7s var(--ease);
+  animation: none; /* cancels the on-load `rise`, which would fire off-screen */
 }
 
-html.js-reveal main > :not(:first-child) .content-section,
-html.js-reveal main > :not(:first-child) .contact-container {
+html.js-reveal main > :not(:first-child).is-visible,
+html.js-reveal main > :first-child :is(.project-container, .experience-item, .education-item, .acheivement-item).is-visible {
+  opacity: 1;
+  translate: none;
+}
+
+/* Inner wrappers that also start at opacity: 0 ride in with their parent
+   instead of running their own on-load animation. */
+html.js-reveal main > :not(:first-child) :is(.content-section, .contact-container) {
   opacity: 1;
   animation: none;
 }
 
-html.js-reveal main > :not(:first-child).is-visible {
-  opacity: 1;
-  transform: none;
-  will-change: auto;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html.js-reveal main > :not(:first-child) {
-    opacity: 1 !important;
-    transform: none !important;
+  html.js-reveal main > :not(:first-child),
+  html.js-reveal main > :first-child :is(.project-container, .experience-item, .education-item, .acheivement-item) {
+    opacity: 1;
+    translate: none;
   }
 }

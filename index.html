@@ -22,12 +22,7 @@
             document.documentElement.setAttribute('data-theme', 'dark');
           }
         } catch (e) {}
-      }
-    )();
-    if (window.IntersectionObserver &&
-      !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.classList.add('js-reveal');
-  }
+      })();
     </script>
 </head>
 <body>
