@@ -1591,12 +1591,3 @@ html.js-reveal main > :not(:first-child) :is(.content-section, .contact-containe
     translate: none;
   }
 }
-/* Mobile viewport containment: keep cards in normal document flow. */
-@media (max-width: 768px) {
-  html.js-reveal main > :not(:first-child),
-  html.js-reveal main > :first-child :is(.project-container, .experience-item, .education-item, .acheivement-item) {
-    opacity: 1;
-    translate: none;
-    transition: none;
-  }
-}
