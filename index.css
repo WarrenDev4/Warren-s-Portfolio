@@ -1529,8 +1529,34 @@ main > section:not(.hero):first-child {
     transform: translateZ(0);
   }
 
-  /* will-change on a permanently-visible element wastes memory; the icon
-     only animates on tap, so scope it to the moment it's animating */
+
   .theme-btn i { will-change: auto; }
   .theme-btn.swapping i { will-change: transform, opacity; }
+}
+
+html.js-reveal main > :not(:first-child) {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  will-change: opacity, transform;
+  animation: none; 
+}
+
+html.js-reveal main > :not(:first-child) .content-section,
+html.js-reveal main > :not(:first-child) .contact-container {
+  opacity: 1;
+  animation: none;
+}
+
+html.js-reveal main > :not(:first-child).is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js-reveal main > :not(:first-child) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

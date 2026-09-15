@@ -267,4 +267,26 @@ function unlockScroll() {
       submitBtn.textContent = 'Send message';
     }
   });
+
+  /* Scroll reveal */
+(function () {
+  if (!document.documentElement.classList.contains('js-reveal')) return;
+
+  var blocks = document.querySelectorAll('main > :not(:first-child)');
+  if (!blocks.length) return;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      io.unobserve(entry.target); // reveal once — don't re-hide on the way back up
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -8% 0px' // fires just before the block is fully on screen
+  });
+
+  blocks.forEach(function (el) { io.observe(el); });
+})();
+
 })();
