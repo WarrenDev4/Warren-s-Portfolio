@@ -1,27 +1,3 @@
-/* =============================================================
-   main.js — shared behaviour for every page
-   Linked from index, about, experience, projects, contact.
-   ============================================================= */
-
-/* ---- Configuration -------------------------------------------------------
-   This is a static site: there is no server and no build step, so a .env
-   file cannot be read here. Set the key one of two ways:
-
-   1. Edit the fallback string below. Simplest, and fine — a Web3Forms
-      access key is meant to be public. It only permits sending mail to
-      the address you verified, so it is useless to anyone else.
-
-   2. Or create config.js next to this file and load it FIRST:
-        <script src="config.js"></script>
-        <script src="main.js"></script>
-      with contents:
-        window.PORTFOLIO_CONFIG = {
-          web3formsKey: 'your-key-here',
-          contactEmail: 'warrenspencer41@gmail.com'
-        };
-      You can then gitignore config.js. Note this keeps the key out of
-      your repo, not out of the browser — visitors can still read it.
-   ------------------------------------------------------------------------ */
 const CONFIG = window.PORTFOLIO_CONFIG || {};
 const WEB3FORMS_KEY = CONFIG.web3formsKey || 'YOUR_ACCESS_KEY_HERE';
 const CONTACT_EMAIL = CONFIG.contactEmail || 'warrenspencer41@gmail.com';
@@ -38,12 +14,6 @@ function escapeAttr(value) {
                       .replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-
-/* ===== Scroll lock =====
-   Locks the document without losing the user's exact scroll position.
-   The fixed-body technique is retained for iOS Safari, but all inline
-   state is restored and the final scroll is applied after layout releases
-   the fixed body to prevent close/open jumps. */
 let scrollLockOffset = 0;
 let scrollLockCount = 0;
 let scrollLockStyles = null;
@@ -91,8 +61,6 @@ function unlockScroll() {
   const previousBehavior = root.style.scrollBehavior;
   root.style.scrollBehavior = 'auto';
 
-  // Wait one frame for the body to leave fixed positioning before restoring
-  // scroll. This removes the visible jump on iOS Safari and mobile Chrome.
   requestAnimationFrame(() => {
     window.scrollTo(0, scrollLockOffset);
     requestAnimationFrame(() => {
@@ -101,8 +69,6 @@ function unlockScroll() {
   });
 }
 
-
-/* ===== Mobile menu ===== */
 (function () {
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -128,8 +94,6 @@ function unlockScroll() {
   window.__closeMobileMenu = () => setMenu(false);
 })();
 
-
-/* ===== Theme toggle ===== */
 (function () {
   const btn = document.getElementById('themeBtn');
   const icon = document.getElementById('themeIcon');
@@ -140,7 +104,7 @@ function unlockScroll() {
     const dark = theme === 'dark';
     if (animate) {
       btn.classList.remove('swapping');
-      void btn.offsetWidth;            // forces the animation to restart
+      void btn.offsetWidth;           
       btn.classList.add('swapping');
     }
     icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
@@ -162,10 +126,6 @@ function unlockScroll() {
   });
 })();
 
-
-/* ===== Let's Talk modal =====
-   The markup is built here and appended to <body>, so no page
-   needs to carry a copy of it. */
 (function () {
   const openBtn = document.getElementById('talkBtn');
   const mobileLink = document.querySelector('.talk-link-mobile');
@@ -241,7 +201,6 @@ function unlockScroll() {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 
-  // Keep keyboard focus inside the dialog while it's open
   modal.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab') return;
     const focusable = modal.querySelectorAll('button, input:not([type="hidden"]):not(.hp-field), textarea');
@@ -297,10 +256,6 @@ function unlockScroll() {
   });
 })();
 
-
-/* ===== Scroll reveal =====
-   The hidden state lives in CSS so it applies before first paint; this only
-   flips .is-visible on as each block scrolls into view. ==================== */
 (function () {
   if (!document.documentElement.classList.contains('js-reveal')) return;
 
@@ -317,9 +272,6 @@ function unlockScroll() {
       io.unobserve(entry.target); // reveal once — don't re-hide on the way back up
     });
   }, {
-    // threshold 0 rather than a ratio: a section taller than the viewport can
-    // never reach a high ratio. The negative bottom margin is what delays the
-    // trigger until the block's top edge is ~90% of the way up the screen.
     threshold: 0,
     rootMargin: '0px 0px -10% 0px'
   });

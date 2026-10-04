@@ -5,8 +5,8 @@
    TOKENS
    ========================================================================== */
 :root {
-  --bg-top: #8596cb;
-  --bg-bottom: #94a3d2;
+  --bg-top: #6989e8;
+  --bg-bottom: #c1cef6;
 
   /* Dark-theme backdrop, used by the crossfade layer */
   --bg-dark-top: #040a20;
@@ -900,7 +900,7 @@ main > section:not(.hero):first-child {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  background: linear-gradient(180deg, var(--card-grad-1), var(--card-grad-2));
+  background: #5971bb;
   padding: var(--space-md);
   border-radius: var(--radius-md);
   margin: var(--space-md) 0;
@@ -913,7 +913,7 @@ main > section:not(.hero):first-child {
 .education-item { margin-bottom: 0; }
 
 .acheivement-item {
-  background: var(--card-grad-2);
+  background: #5971bb;;
   margin-bottom: var(--space-md);
 }
 
@@ -931,7 +931,7 @@ main > section:not(.hero):first-child {
   gap: 28px;
   margin-bottom: var(--space-md);
   padding: 32px;
-  background: linear-gradient(180deg, var(--card-grad-1), var(--card-grad-2));
+  background: #5971bb;;
   color: #fff;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm), inset 0 1px 1px rgba(255, 255, 255, 0.4);
