@@ -900,7 +900,7 @@ main > section:not(.hero):first-child {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  background: #4194cb;
+  background: #5971bb;
   padding: var(--space-md);
   border-radius: var(--radius-md);
   margin: var(--space-md) 0;
