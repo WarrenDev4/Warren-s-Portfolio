@@ -5,20 +5,15 @@
    TOKENS
    ========================================================================== */
 :root {
-  --bg-top: #6989e8;
-  --bg-bottom: #c1cef6;
-
-  /* Dark-theme backdrop, used by the crossfade layer */
-  --bg-dark-top: #1e3dad;
-  --bg-dark-bottom: #2c3b74;
-
+  --bg-top: #8596cb;
+  --bg-bottom: #eaeefb;
   --accent: #233b83;
   --accent-light: #0b59d7;
   --accent-bright: #57dcf1;
   --text-light: #ffffff;
-  --text-muted: rgb(106, 126, 181);
-  --card-grad-1: #6d7ca8;
-  --card-grad-2: #7986b0;
+  --text-muted: #cdd8f6;
+  --card-grad-1: #8796c4;
+  --card-grad-2: #aab6de;
   --dark-grad-1: #07135a;
   --dark-grad-2: #4054c2;
   --black-grad-1: #1d1c1c;
@@ -34,6 +29,7 @@
   --space-lg: 40px;
   --space-xl: 64px;
 
+  /* Polished Shadows */
   --shadow-sm: 0 4px 12px rgba(10, 20, 60, 0.08);
   --shadow-md: 0 12px 32px rgba(10, 20, 60, 0.12);
   --shadow-lg: 0 24px 48px rgba(10, 20, 60, 0.18);
